@@ -1,4 +1,4 @@
-# Elements by ofernandoavila
+# Elements by avilalab
 
 ## Overview
 
@@ -35,13 +35,13 @@ Follow these steps to set up the project:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/ofernandoavila/ofernandoavila-elements.git
+   git clone https://github.com/avilalab/elements.git
    ```
 
 2. **Navigate to the project folder**:
 
    ```bash
-   cd ofernandoavila-elements
+   cd elements
    ```
 
 3. **Install dependencies**:
