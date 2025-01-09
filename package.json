@@ -1,6 +1,6 @@
 {
-  "name": "elements",
-  "version": "0.2.2",
+  "name": "avilalab-elements",
+  "version": "0.2.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
