@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CreatePasswordValidation } from "../../custom/CreatePasswordValidation/CreatePasswordValidation";
 import { Checkbox } from "../../inputs/Checkbox/Checkbox";
 import { Password } from "../../inputs/Password/Password";
 import { Text } from "../../inputs/Text/Text";
-import { IInputValidation, OnValidateInputState } from "../../inputs/types";
-import { formValidation, IValidation, ValidateForm } from "../../../validations/forms/FormValidation";
+import { OnValidateInputState } from "../../inputs/types";
 
 import '../../../scss/style.scss';
 import { Button } from "../../buttons/Button/Button";

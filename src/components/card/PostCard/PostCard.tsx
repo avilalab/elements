@@ -1,8 +1,8 @@
 import { Card } from "../Card/Card";
 import { IPostCardProps } from "../types";
+import { PostDificulty } from "../../custom/PostDificulty/PostDificulty";
 
 import '../../../scss/style.scss';
-import { PostDificulty } from "../../custom/PostDificulty/PostDificulty";
 
 export function PostCard({
     postCategory,

@@ -1,5 +1,5 @@
-import '../../../scss/style.scss';
 import { IPostNavigationButtonProps } from '../types';
+import '../../../scss/style.scss';
 
 export function PostNavigationButton({
     type,

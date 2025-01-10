@@ -14,7 +14,7 @@ export function ResetPassword({
     if(code === '') {
         return (
             <ResetCodeForm
-                onSubmitForm={({code}) => new Promise((resolve, reject) => {
+                onSubmitForm={({code}) => new Promise(() => {
                     setCode(code);
                 })} 
                 {...resetCodeForm}
@@ -25,7 +25,7 @@ export function ResetPassword({
     if(!isPasswordSet) {
         return (
             <ResetPasswordForm 
-                onSubmitForm={({}) => new Promise((resolve, reject) => {
+                onSubmitForm={({}) => new Promise(() => {
                     setIsPasswordSet(true);
                 })}
                 {...resetPasswordForm}

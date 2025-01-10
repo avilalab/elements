@@ -1,6 +1,6 @@
+import { ICardProps } from '../types';
 
 import '../../../scss/style.scss';
-import { ICardProps } from '../types';
 
 export function Card({
     cardFooter,

@@ -37,11 +37,12 @@ export interface OnValidateInput<T> {
     onSuccessMessage?: () => string;
 }
 
-export interface InputProps<T> extends InputProps, SetStateInput<T>, OnValidateInput<T> {
+export interface InputProps<T> extends InputProps, SetStateInput<T>, OnValidateInput<T>,  InputHTMLAttributes<HTMLInputElement> {
     label?: string;
     placeholder?: string;
     name?: string;
     id?: string;
+    validation?: IInputValidation;
 }
 
 export interface BasicInputProps<T> extends InputProps<T> {

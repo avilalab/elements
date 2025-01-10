@@ -26,7 +26,7 @@ export const Default: Story = {
                 username: string; 
                 password: string;
                 rememberPassword: boolean; 
-            }) => new Promise<void>((resolve, reject) => {
+            }) => new Promise<void>((resolve) => {
                 console.log({
                     username,
                     password,

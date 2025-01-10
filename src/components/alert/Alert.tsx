@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import '../../scss/style.scss';
+
 const states: { state: IAlertType; element: JSX.Element }[] = [
     { state: 'danger', element: <i className="fa fa-times"></i>},
     { state: 'success', element: <i className="fa fa-check"></i>},
