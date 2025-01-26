@@ -21,6 +21,8 @@ export { TextArea } from './src/components/inputs/TextArea/TextArea';
 
 export { Loading } from './src/components/Loading/Loading';
 
+export { Table } from './src/components/table/Table';
+
 export { PostContentWidget } from './src/components/widgets/PostContentWidget/PostContentWidget';
 export { PostMetaWidget } from './src/components/widgets/PostMetaWidget/PostMetaWidget';
 export { PostSectionWidget } from './src/components/widgets/PostSectionWidget/PostSectionWidget';
