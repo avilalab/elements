@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../../scss/style.scss';
 
-interface TableProps<T extends Object> {
+export interface TableProps<T extends Object> {
     fields: (keyof T)[];
     data?: T[];
     actions?: (item: T) => JSX.Element;

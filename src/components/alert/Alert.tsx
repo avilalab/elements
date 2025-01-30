@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
+import styles from './Alert.module.scss';
 
-import '../../scss/style.scss';
+export type IAlertType = 'danger' | 'success' | 'warning' | 'info';
+
+export interface IAlertProps {
+    type: IAlertType;
+    mesage: string;
+}
 
 const states: { state: IAlertType; element: JSX.Element }[] = [
     { state: 'danger', element: <i className="fa fa-times"></i>},
@@ -9,10 +15,10 @@ const states: { state: IAlertType; element: JSX.Element }[] = [
     { state: 'info', element: <i className="fa fa-info"></i>},
 ];
 
-export function Alert({
+export const Alert = ({
     type,
     mesage
-}: IAlertProps) {
+}: IAlertProps) => {
     const [state, setState] = useState<{ state: string; element: JSX.Element } | null>(null);
 
     useEffect(() => {
@@ -22,6 +28,6 @@ export function Alert({
     if (!state) return <></>;
 
     return (
-        <div className={`alert alert-${state.state}`}>{state.element} {mesage}</div>
+        <div className={ `${styles['alert']} ${styles[`alert-${state.state}`]}` }>{state.element} {mesage}</div>
     );
 }

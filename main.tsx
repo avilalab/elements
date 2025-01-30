@@ -1,5 +1,3 @@
-export { Alert } from './src/components/alert/Alert';
-
 export { Button } from "./src/components/buttons/Button/Button";
 
 export { Card } from "./src/components/card/Card/Card";
