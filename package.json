@@ -4,7 +4,10 @@
   "main": "dist/avilalab-elements.umd.js",
   "module": "dist/avilalab-elements.es.js",
   "types": "dist/index.d.ts",
-  "files": ["dist", "src/**/*.scss"],
+  "files": [
+    "dist",
+    "src/**/*.scss"
+  ],
   "scripts": {
     "build": "tsc -b && vite build",
     "prepublish": "npm run build",
@@ -35,6 +38,7 @@
     "@storybook/react": "^8.4.7",
     "@storybook/react-vite": "^8.4.7",
     "@storybook/test": "^8.4.7",
+    "@types/node": "^22.12.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",

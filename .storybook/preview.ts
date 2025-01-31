@@ -1,6 +1,5 @@
 import { themes } from '@storybook/theming'
 import type { Preview } from "@storybook/react";
-import '../src/scss/style.scss';
 
 const preview: Preview = {
     parameters: {

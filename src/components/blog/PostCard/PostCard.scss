@@ -1,0 +1,78 @@
+.post-card {
+    position: relative;
+    .card-header, .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: $elements-card-padding-y $elements-card-padding-x;
+        background: transparent;
+        border-color: transparent;
+    
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .card-title {
+        font-size: 22px;
+        font-weight: 800;
+        font-family: $elements-font-secondary;
+    }
+    
+    .card-subtitle {
+        margin-top: 24px;
+        font-size: 18px;
+        font-weight: 300;
+        color: $elements-text-secondary;
+        font-family: $elements-font-secondary;
+    }
+
+    .post-card-author {
+        font-family: $elements-font-secondary;
+        font-size: 16px;
+        font-weight: 800;
+    }
+
+    .post-card-rating {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        ul {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-left: 16px;
+        }
+    }
+
+    .post-card-category {
+        font-weight: 700;
+        padding: 4px 16px;
+        position: relative;
+        
+        & .background {
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -16px;
+            position: absolute;
+            display: flex;
+            flex: 1;
+            border-radius: 0px 16px 16px 0px;
+        }
+
+        & .label {
+            position: relative;
+            left: calc(50% - 16px);
+            transform: translate(-50%, 0px);
+        }
+    }
+
+    .fa-clock {
+        color: $elements-primary;
+    }
+}
