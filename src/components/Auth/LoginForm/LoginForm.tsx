@@ -4,36 +4,33 @@ import { Password } from "../../inputs/Password/Password";
 import { Text } from "../../inputs/Text/Text";
 import { Button } from "../../button/Button";
 import { BasicValidation } from "../../../validations/inputs/BasicValidation/BasicValidation";
-import { OnValidateInputState } from "../../inputs/types";
 
-import '../../../scss/style.scss';
-
-export interface IFormLoginFormProps {
-    title?: string;
-    bordered?: boolean;
-    message?: string;
-    onSubmitForm?: (form: any) => Promise<void>;
-    rememberPasswordOption?: boolean;
-}
+import './LoginForm.scss';
 
 export function LoginForm({
     title,
     bordered,
     rememberPasswordOption = true,
     onSubmitForm
-}: IFormLoginFormProps) {
+}: {
+    title?: string;
+    bordered?: boolean;
+    message?: string;
+    onSubmitForm?: (form: any) => Promise<void>;
+    rememberPasswordOption?: boolean;
+}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [rememberPassword, setRememberPassword] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const HandleValidateUsername = (value?: string) : boolean | null => BasicValidation.not_empty(value!);
-    const HandleValidatePassword = (value?: string) : boolean => BasicValidation.not_empty(value!);
+    const HandleValidateUsername = (value: string) : boolean => value.length > 0;
+    const HandleValidatePassword = (value: string) : boolean => value.length > 0;
 
     const [states, setStates] = useState<{
-        username: OnValidateInputState;
-        password: OnValidateInputState;
+        username: 'default' | 'valid' | 'invalid';
+        password: 'default' | 'valid' | 'invalid';
     }| undefined>(undefined);
 
     async function HandleOnSubmitForm(e: any) {
@@ -68,17 +65,16 @@ export function LoginForm({
                 placeholder="Insert your username here"
                 value={username}
                 setValue={setUsername}
-                onErrorMessage={() => 'This field cannot be empty'}
+                errorMessage={'This field cannot be empty'}
                 onValidate={HandleValidateUsername}
-                state={ states?.username }
             />
-            <Password 
+            <Password
                 label="Password" 
+                value={ password }
                 setValue={ setPassword } 
                 placeholder="Insert your password here"
-                onErrorMessage={() => 'This field cannot be empty'}
+                errorMessage={'This field cannot be empty'}
                 onValidate={HandleValidatePassword}
-                state={ states?.password }
             />
             { rememberPasswordOption ? 
                 <Checkbox 

@@ -1,17 +1,33 @@
 import { useEffect, useState } from 'react';
-import { ICreatePasswordValidationProps, ICreatePasswordValidationItemProps } from './types';
 
 import '../../../scss/style.scss';
-import { PasswordValidation } from '../../../validations/inputs/Password/PasswordValidation';
+import { PasswordValidations } from '../../../validations/inputs/Password/PasswordValidation';
+
+interface CreatePasswordValidation {
+    password: string;
+    minimumChars?: boolean;
+    min?: number;
+    hasNumber?: boolean;
+    hasUpperCase?: boolean;
+    hasSpecialChar?: boolean;
+    setValidation?: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface ICreatePasswordValidationItemProps {
+    label: string;
+    password: string;
+    onValidate: (password: string) => boolean;
+}
 
 export function CreatePasswordValidation({
     password,
+    min,
     hasNumber,
     hasSpecialChar,
     hasUpperCase,
     minimumChars,
     setValidation
-}: ICreatePasswordValidationProps) {
+}: CreatePasswordValidation) {
     useEffect(() => {
         HandleIsPasswordValid(password);
     }, [password]);
@@ -19,10 +35,10 @@ export function CreatePasswordValidation({
     function HandleIsPasswordValid(password: string) {
         let results: boolean[] = [];
 
-        if(minimumChars) results.push(PasswordValidation.minimumChars(password, minimumChars));
-        if(hasNumber) results.push(PasswordValidation.hasNumber(password));
-        if(hasUpperCase) results.push(PasswordValidation.hasUpperCase(password));
-        if(hasSpecialChar) results.push(PasswordValidation.hasSpecialChar(password));
+        if(minimumChars) results.push(PasswordValidations.minimumChars(password, min));
+        if(hasNumber) results.push(PasswordValidations.hasNumber(password));
+        if(hasUpperCase) results.push(PasswordValidations.hasUpperCase(password));
+        if(hasSpecialChar) results.push(PasswordValidations.hasSpecialChar(password));
 
         if(setValidation) {
             setValidation(!(results.filter( x => x === false).length > 0));

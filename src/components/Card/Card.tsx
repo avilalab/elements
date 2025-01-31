@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 import './Card.scss';
 
-interface ICardProps {
+interface Card {
     title?: string;
     subtitle?: string;
     text?: string;
@@ -32,7 +32,7 @@ export function Card({
     id,
     className,
     bordered = true
-}: ICardProps) {
+}: Card) {
     return (
         <div id={ id } className={`card ${className}${ textCenter ? ' text-center' : '' }${ !bordered ? ' card-no-border' : '' }`} style={{ width, height }}>
             { cardHeader ? <div className="card-header">{ cardHeader }</div> : ( <></> ) }
