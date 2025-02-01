@@ -7,7 +7,7 @@ export type ButtonColorType = 'primary' | 'secondary' | 'third' | 'default' | 's
 
 export interface ButtonProps {
     color?: ButtonColorType;
-    label: string;
+    label?: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     children?: ReactNode;
     isLoading?: boolean;
@@ -28,7 +28,7 @@ export const Button = ({
             onClick={onClick}
             disabled={isLoading ?? disabled}
         >
-            {isLoading ? <Loading /> : children ?? label}
+            {isLoading ? <Loading /> : children ?? label }
         </button>
     );
 };

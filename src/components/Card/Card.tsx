@@ -4,7 +4,7 @@ import './Card.scss';
 
 interface Card {
     title?: string;
-    subtitle?: string;
+    subtitle?: string | { html?: string; };
     text?: string;
     textCenter?: boolean;
     width?: number;
@@ -16,6 +16,7 @@ interface Card {
     cardFooter?: JSX.Element;
     bordered?: boolean;
     children?: ReactNode;
+    injectHtml?: string;
 }
 
 export function Card({
@@ -31,18 +32,19 @@ export function Card({
     height,
     id,
     className,
-    bordered = true
+    bordered = true,
+    injectHtml
 }: Card) {
     return (
         <div id={ id } className={`card ${className}${ textCenter ? ' text-center' : '' }${ !bordered ? ' card-no-border' : '' }`} style={{ width, height }}>
             { cardHeader ? <div className="card-header">{ cardHeader }</div> : ( <></> ) }
             <div className="card-body">
-                { title ? <h5 className="card-title">{ title }</h5> : '' }
-                { subtitle ? <h6 className="card-subtitle">{ subtitle }</h6> : '' }
-                { text ? <p className="card-text">{ text }</p> : '' }
-                { links?.map( link  => <a className='card-link' href={ link.href }>{ link.label }</a>) }
-                { children }
-            </div>
+                    { title ? <h5 className="card-title">{ title }</h5> : '' }
+                    { subtitle ? (typeof subtitle === 'string' ? <h6 className="card-subtitle">{ subtitle }</h6> : ( subtitle.html ? <h6 className="card-subtitle" dangerouslySetInnerHTML={{ __html: subtitle.html }}></h6> : '' )) : '' }
+                    { text ? <p className="card-text">{ text }</p> : '' }
+                    { links?.map( link  => <a className='card-link' href={ link.href }>{ link.label }</a>) }
+                    { children }
+                </div>
             { cardFooter ? <div className="card-footer">{ cardFooter }</div> : ( <></> ) }
         </div>
     );

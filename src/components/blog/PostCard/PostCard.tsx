@@ -4,12 +4,12 @@ import { PostDificulty } from "../PostDificulty/PostDificulty";
 import './PostCard.scss';
 
 interface IPostCardProps {
-    postTitle: string;
-    postCategory: string;
-    postExcerpt: string;
-    postAuthor: string;
-    postReadTime: number;
-    postRating: number;
+    postTitle?: string;
+    postCategory?: string;
+    postExcerpt?: string;
+    postAuthor?: string;
+    postReadTime?: number;
+    postRating?: number;
     postCategoryBackgroundColor?: string;
     postCategoryColor?: string;
 }
@@ -34,7 +34,7 @@ export function PostCard({
                         <div className="background" style={{ backgroundColor: postCategoryBackgroundColor }}></div>
                         <div className="label" style={{ color: postCategoryColor }}>{ postCategory }</div>
                     </span>
-                    <PostDificulty postRating={ postRating } />
+                    {postRating ? <PostDificulty postRating={ postRating } /> : '' }
                 </>
             )}
             cardFooter={(
@@ -44,7 +44,7 @@ export function PostCard({
                 </>
             )}
             title={postTitle}
-            subtitle={ postExcerpt }
+            subtitle={{ html: postExcerpt }}
             textCenter
         />
     );

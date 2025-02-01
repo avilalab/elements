@@ -3,3 +3,16 @@
 .card.card-no-border {
     border: none;
 }
+
+.card {
+    text-decoration: none;
+}
+
+.card .card-subtitle p {
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
