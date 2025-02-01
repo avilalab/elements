@@ -16,7 +16,7 @@ interface Card {
     cardFooter?: JSX.Element;
     bordered?: boolean;
     children?: ReactNode;
-    injectHtml?: string;
+    onClick?: () => void;
 }
 
 export function Card({
@@ -33,12 +33,12 @@ export function Card({
     id,
     className,
     bordered = true,
-    injectHtml
+    onClick
 }: Card) {
     return (
         <div id={ id } className={`card ${className}${ textCenter ? ' text-center' : '' }${ !bordered ? ' card-no-border' : '' }`} style={{ width, height }}>
-            { cardHeader ? <div className="card-header">{ cardHeader }</div> : ( <></> ) }
-            <div className="card-body">
+            { cardHeader ? <div onClick={onClick} className="card-header">{ cardHeader }</div> : ( <></> ) }
+            <div onClick={onClick} className="card-body">
                     { title ? <h5 className="card-title">{ title }</h5> : '' }
                     { subtitle ? (typeof subtitle === 'string' ? <h6 className="card-subtitle">{ subtitle }</h6> : ( subtitle.html ? <h6 className="card-subtitle" dangerouslySetInnerHTML={{ __html: subtitle.html }}></h6> : '' )) : '' }
                     { text ? <p className="card-text">{ text }</p> : '' }

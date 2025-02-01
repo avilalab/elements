@@ -12,6 +12,9 @@ interface IPostCardProps {
     postRating?: number;
     postCategoryBackgroundColor?: string;
     postCategoryColor?: string;
+    onClickPost?: () => void;
+    onClickAuthorPost?: () => void;
+    onClickCategoryPost?: () => void;
 }
 
 export function PostCard({
@@ -22,7 +25,10 @@ export function PostCard({
     postTitle,
     postRating,
     postCategoryBackgroundColor,
-    postCategoryColor
+    postCategoryColor,
+    onClickAuthorPost,
+    onClickCategoryPost,
+    onClickPost
 }: IPostCardProps) {
     return (
         <Card
@@ -30,7 +36,7 @@ export function PostCard({
             width={ 380 }
             cardHeader={(
                 <>
-                    <span className="post-card-category">
+                    <span onClick={onClickCategoryPost} className="post-card-category">
                         <div className="background" style={{ backgroundColor: postCategoryBackgroundColor }}></div>
                         <div className="label" style={{ color: postCategoryColor }}>{ postCategory }</div>
                     </span>
@@ -39,13 +45,14 @@ export function PostCard({
             )}
             cardFooter={(
                 <>
-                    <span className="post-card-author"><i className="fa-regular fa-user-circle mx-2"></i>{ postAuthor }</span>
-                    <span className="post-card-read-time"><i className="fa-regular fa-clock mx-2"></i>{ postReadTime } min</span>
+                    { postAuthor ? <span onClick={onClickAuthorPost} className="post-card-author"><i className="fa-regular fa-user-circle mx-2"></i>{ postAuthor }</span> : '' }
+                    { postReadTime ? <span className="post-card-read-time"><i className="fa-regular fa-clock mx-2"></i>{ postReadTime } min</span> : '' }
                 </>
             )}
             title={postTitle}
             subtitle={{ html: postExcerpt }}
             textCenter
+            onClick={onClickPost}
         />
     );
 }
