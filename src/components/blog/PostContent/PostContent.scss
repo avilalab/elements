@@ -1,0 +1,113 @@
+@import '../../../scss/global.scss';
+
+.post-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+}
+
+.post {
+    &-header {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 32px;
+    }
+
+    &-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &-title {
+        font-size: 32px;
+        font-weight: 800;
+        text-align: center;
+    }
+
+    &-publish-date {
+        margin-top: 24px;
+        font-size: 14px;
+
+        i { 
+            color: $primary;
+            margin-right: 8px;
+        }
+    }
+
+    &-content {
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 32px;
+        }
+
+        h2 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        h4 {
+            font-size: 16px;
+        }
+
+        h5 {
+            font-size: 16px;
+        }
+
+        h6 {
+            font-size: 14px;
+        }
+
+        p {
+            font-weight: 400;
+            line-height: 32px;
+        }
+
+        p, .post-image {
+            padding-top: 8px;
+            margin-bottom: 24px;
+        }
+
+        blockquote {
+            margin: 64px;
+            position: relative;
+
+            ::after, ::before {
+                content: " ";
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                background-color: $gray;
+                opacity: .5;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            ::after {
+                bottom: -50%;
+            }
+            ::before {
+                top: -50%;
+            }
+
+            p {
+                font-style: italic;
+            }
+        }
+
+        .post-image {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+    }
+}

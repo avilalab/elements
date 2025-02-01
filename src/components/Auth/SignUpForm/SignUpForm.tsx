@@ -1,67 +1,118 @@
 import { useState } from "react";
-import { CreatePasswordValidation } from "../../custom/CreatePasswordValidation/CreatePasswordValidation";
-import { Checkbox } from "../../inputs/Checkbox/Checkbox";
-import { Password } from "../../inputs/Password/Password";
-import { Text } from "../../inputs/Text/Text";
-import { OnValidateInputState } from "../../inputs/types";
+import { CreatePasswordValidation } from "../CreatePasswordValidation/CreatePasswordValidation";
+import { Checkbox } from "../../Inputs/Checkbox/Checkbox";
+import { Password } from "../../Inputs/Password/Password";
+import { Text } from "../../Inputs/Text/Text";
+import { Button } from "../../Button/Button";
+import { PasswordValidations, PasswordValidationsType } from "../../../validations/PasswordValidation";
 
-import '../../../scss/style.scss';
-import { Button } from "../../button/Button";
-import { BasicValidation } from "../../../validations/inputs/BasicValidation/BasicValidation";
-import { PasswordValidation } from "../../../validations/inputs/Password/PasswordValidation";
+import './SignUpForm.scss';
+import { Email } from "../../Inputs/Email/Email";
+
+export interface SignUpForm {
+    title?: string;
+    bordered?: boolean;
+    passwordValidations?: PasswordValidationsType[];
+    passwordMinChar?: number;
+    onSubmitForm: (data: { username: string; email: string; password: string; confirmPassword: string; terms: boolean; }) => boolean;
+    completeMessage: string;
+}
 
 export function SignUpForm({
     title,
     bordered,
-    options,
+    passwordValidations,
+    passwordMinChar,
     onSubmitForm
-}: IFormSignUpFormProps) {
+}: SignUpForm) {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [terms, setTerms] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const [states, setStates] = useState<{ 
-        username: OnValidateInputState; 
-        email: OnValidateInputState; 
-        password: OnValidateInputState; 
-        confirmPassword: OnValidateInputState;
-        terms: OnValidateInputState 
-    } | undefined>(undefined);
+    const [validations, setValidations] = useState<{
+        username: boolean | undefined;
+        email: boolean | undefined;
+        password: boolean | undefined;
+        confirmPassword: boolean | undefined;
+        terms: boolean | undefined;
+    }>({
+        username: undefined,
+        email: undefined,
+        password: undefined,
+        confirmPassword: undefined,
+        terms: undefined
+    });
 
-    const HandleValidateUsername = (value: string) => BasicValidation.not_empty(value);
-    const HandleValidateEmail = (value: string) => BasicValidation.valid_email(value);
-    const HandleValidatePassword = (value: string) => PasswordValidation.completeValidation(value, options?.passwordValidation?.minimumChars!);
-    const HandleValidateConfirmPassword = (value: string) => value !== "" && value === password;
+    const HandleValidateUsername = (value: string) => value !== "";
+    const HandleValidateEmail = (value: string) => (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) || value === "") ? false : true;
+    const HandleValidateConfirmPassword = (value: string) => PasswordValidations.matchPassword(password, value);
     const HandleValidateTerms = (value: boolean) => value;
+    const isEnable = (type: PasswordValidationsType) => passwordValidations ? passwordValidations.filter( x => x === type).length > 0 : false;
+    const HandleValidatePassword = (value: string) => {
+        let errors:boolean[] = [];
+        if(passwordValidations) {
+            passwordValidations.map( validation => {
+                switch(validation) {
+                    case 'minimumChars':
+                        errors.push(PasswordValidations[validation](password, passwordMinChar));
+                        break;
+
+                    case 'matchPassword':
+                        errors.push(PasswordValidations[validation](password, confirmPassword));
+                        break;
+                    
+                    default:
+                        errors.push(PasswordValidations[validation](password));
+                        break;
+                }
+
+            });
+        }
+
+        if(errors.filter( x => x === false).length > 0) {
+            return false;
+        }
+        
+        return true;
+    };
+
+    
 
     async function HandleOnSubmitForm(e: any) {
         e.preventDefault();
         
-        let errors: boolean[] = [];
-
-        setStates({
-            username: HandleValidateUsername(username) ? 'valid' : 'invalid',
-            email: HandleValidateEmail(email) ? 'valid' : 'invalid',
-            password: HandleValidatePassword(password) ? 'valid' : 'invalid',
-            confirmPassword: HandleValidateConfirmPassword(confirmPassword) ? 'valid' : 'invalid',
-            terms: HandleValidateTerms(terms) ? 'valid' : 'invalid',
+        setIsLoading(true);
+                
+        setValidations({
+            username: HandleValidateUsername(username),
+            email: HandleValidateEmail(email),
+            password: HandleValidatePassword(password),
+            confirmPassword: HandleValidateConfirmPassword(confirmPassword),
+            terms: HandleValidateTerms(terms)
         });
-
-        errors.push(HandleValidateUsername(username));
-        errors.push(HandleValidateEmail(email));
-        errors.push(HandleValidatePassword(password));
-        errors.push(HandleValidateConfirmPassword(confirmPassword));
-        errors.push(HandleValidateTerms(terms));
-
-        if(errors.filter( x => x === false).length === 0) {
-            if(onSubmitForm) {
-                await onSubmitForm({ username, email, password });
-            }
+        
+        if(
+            HandleValidateUsername(username) &&
+            HandleValidateEmail(email) &&
+            HandleValidatePassword(password) &&
+            HandleValidateConfirmPassword(confirmPassword) &&
+            HandleValidateTerms(terms)
+        ) {
+            return onSubmitForm({
+                username,
+                email,
+                password,
+                confirmPassword,
+                terms
+            });
         }
+        setIsLoading(false);
+        return false;
     }
-
+    
     return (
         <form className={`form ${ bordered ? 'form-bordered' : '' }`}>
             { title ? <h4 className="title"> { title }</h4> : '' }
@@ -71,19 +122,21 @@ export function SignUpForm({
                         label="Username" 
                         value={username}
                         setValue={ setUsername }
-                        placeholder="Insert your username here"
-                        state={ states?.username }
+                        placeholder="Username"
                         onValidate={ HandleValidateUsername }
+                        valid={ validations.username }
+                        disabled={ isLoading }
                     />
                 </div>
                 <div className="col">
-                    <Text 
+                    <Email 
                         label="E-mail" 
                         value={email}
                         setValue={ setEmail }
-                        placeholder="Insert your e-mail here"
-                        state={ states?.email }
+                        placeholder="E-mail"
                         onValidate={ HandleValidateEmail }
+                        valid={ validations.email }
+                        disabled={ isLoading }
                     />
                 </div>
             </div>
@@ -91,33 +144,38 @@ export function SignUpForm({
                 label="Password"
                 value={password}
                 setValue={ setPassword }
-                placeholder="Insert your password here"
-                state={ states?.password }
+                placeholder="Password"
                 onValidate={ HandleValidatePassword }
+                valid={ validations.password }
+                disabled={ isLoading }
             />
             <CreatePasswordValidation
                 password={ password }
-                minimumChars={options?.passwordValidation?.minimumChars}
-                hasNumber={options?.passwordValidation?.hasNumber}
-                hasUpperCase={options?.passwordValidation?.hasUpperCase}
-                hasSpecialChar={options?.passwordValidation?.hasSpecialChar}
+                min={ passwordMinChar }
+                minimumChars={ isEnable( "minimumChars" ) }
+                hasNumber={ isEnable( "hasNumber" ) }
+                hasUpperCase={ isEnable( "hasUpperCase" ) }
+                hasSpecialChar={ isEnable( "hasSpecialChar" ) }
             />
             <Password 
                 value={confirmPassword}
                 setValue={ setConfirmPassword }
                 label="Confirm password" 
-                placeholder="Insert your password again here"
-                state={ states?.confirmPassword }
+                placeholder="Password again"
                 onValidate={ HandleValidateConfirmPassword }
+                valid={ validations.confirmPassword }
+                disabled={ isLoading }
             />
-            <Checkbox 
+            <Checkbox
                 value={terms}
                 setValue={ setTerms }
                 label="Do you agree with the Terms & Conditions?"
                 id="conditions-agree"
-                state={ states?.terms }
+                onValidate={ (value) => value ? undefined : false  }
+                valid={ validations.terms === undefined ? undefined : ( validations.terms === true ? undefined : false ) }
+                disabled={ isLoading }
             />
-            <Button label="Create account" color="primary" onClick={HandleOnSubmitForm} />
+            <Button isLoading={ isLoading } label="Create account" color="primary" onClick={HandleOnSubmitForm} />
         </form>
     );
 }

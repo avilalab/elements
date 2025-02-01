@@ -8,9 +8,10 @@
     "jsx": "react-jsx",
     "module": "ESNext",
     "target": "ESNext",
+    "typeRoots": ["./node_modules/@types", "./src/types.d.ts"],
     "moduleResolution": "Node",
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
   },
   "include": ["src", "src/types.d.ts"]
 }

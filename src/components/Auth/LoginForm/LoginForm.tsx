@@ -1,60 +1,61 @@
 import { useState } from "react";
-import { Checkbox } from "../../inputs/Checkbox/Checkbox";
-import { Password } from "../../inputs/Password/Password";
-import { Text } from "../../inputs/Text/Text";
-import { Button } from "../../button/Button";
-import { BasicValidation } from "../../../validations/inputs/BasicValidation/BasicValidation";
+import { Checkbox } from "../../Inputs/Checkbox/Checkbox";
+import { Password } from "../../Inputs/Password/Password";
+import { Text } from "../../Inputs/Text/Text";
+import { Button } from "../../Button/Button";
 
 import './LoginForm.scss';
+
+export interface LoginForm {
+    title?: string;
+    bordered?: boolean;
+    message?: string;
+    onSubmitForm: (form: { username: string; password: string; rememberPassword: boolean; }) => boolean;
+    rememberPasswordOption?: boolean;
+}
+
+export interface LoginFormValidation {
+    username: boolean | undefined;
+    password: boolean | undefined;
+}
 
 export function LoginForm({
     title,
     bordered,
     rememberPasswordOption = true,
     onSubmitForm
-}: {
-    title?: string;
-    bordered?: boolean;
-    message?: string;
-    onSubmitForm?: (form: any) => Promise<void>;
-    rememberPasswordOption?: boolean;
-}) {
+}: LoginForm) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [rememberPassword, setRememberPassword] = useState(false);
+
+    const [validations, setValidations] = useState<LoginFormValidation>({
+        username: undefined,
+        password: undefined
+    });
 
     const [isLoading, setIsLoading] = useState(false);
 
     const HandleValidateUsername = (value: string) : boolean => value.length > 0;
     const HandleValidatePassword = (value: string) : boolean => value.length > 0;
 
-    const [states, setStates] = useState<{
-        username: 'default' | 'valid' | 'invalid';
-        password: 'default' | 'valid' | 'invalid';
-    }| undefined>(undefined);
-
-    async function HandleOnSubmitForm(e: any) {
+    function HandleOnSubmitForm(e: any) {
         e.preventDefault();
 
-        setStates({
-            username: HandleValidateUsername(username) ? 'valid' : 'invalid',
-            password: HandleValidatePassword(password) ? 'valid' : 'invalid',
+        setValidations({
+            username: HandleValidateUsername(username),
+            password: HandleValidatePassword(password),
         });
         
         setIsLoading(true);
-        const errors = [];
 
-        errors.push(HandleValidateUsername(username));
-        errors.push(HandleValidatePassword(password));
-
-        if(errors.filter( x => x === false).length === 0) {
-            if(onSubmitForm) {
-                await onSubmitForm({ username, password, rememberPassword });
-                setIsLoading(false);
-            }
+        if(HandleValidateUsername(username) && HandleValidatePassword(password)) {
+            return onSubmitForm({ username, password, rememberPassword });
         }
         
         setIsLoading(false);
+        
+        return false;
     }
 
     return (
@@ -67,6 +68,8 @@ export function LoginForm({
                 setValue={setUsername}
                 errorMessage={'This field cannot be empty'}
                 onValidate={HandleValidateUsername}
+                valid={ validations.username }
+                disabled={ isLoading }
             />
             <Password
                 label="Password" 
@@ -75,6 +78,8 @@ export function LoginForm({
                 placeholder="Insert your password here"
                 errorMessage={'This field cannot be empty'}
                 onValidate={HandleValidatePassword}
+                valid={ validations.password }
+                disabled={ isLoading }
             />
             { rememberPasswordOption ? 
                 <Checkbox 
@@ -83,9 +88,10 @@ export function LoginForm({
                     name="remember-password"
                     value={rememberPassword}
                     setValue={ setRememberPassword }
+                    disabled={ isLoading }
                 /> : '' 
             }
-            <Button label="Login" isLoading={isLoading} color="primary" onClick={HandleOnSubmitForm} />
+            <Button label="Login" isLoading={ isLoading } color="primary" onClick={HandleOnSubmitForm} />
         </form>
     );
 }

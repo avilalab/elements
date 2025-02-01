@@ -1,34 +1,34 @@
 import { useState } from "react";
-import { CreatePasswordValidation } from "../../custom/CreatePasswordValidation/CreatePasswordValidation";
-import { Password } from "../../inputs/Password/Password";
-import { Button } from "../../button/Button";
-import { PasswordValidation, PasswordValidations, PasswordValidationsType } from "../../../validations/inputs/Password/PasswordValidation";
+import { CreatePasswordValidation } from "../CreatePasswordValidation/CreatePasswordValidation";
+import { Password } from "../../Inputs/Password/Password";
+import { Button } from "../../Button/Button";
+import { PasswordValidations, PasswordValidationsType } from "../../../validations/PasswordValidation";
 
 import './ResetPasswordForm.scss';
+
+export interface ResetPasswordValidations {
+    password: boolean | undefined;
+    confirmPassword: boolean | undefined;
+}
 
 export interface ResetPasswordForm {
     title?: string;
     bordered?: boolean;
     passwordValidations?: PasswordValidationsType[];
     passwordMinChar?: number;
-    onSubmitForm: (password: string) => boolean;
-    completeMessage: string;
-    onFinish: () => void;
+    onSubmitForm: (data: { password: string; confirmPassword: string; }) => boolean;
 }
 
-export function ResetPasswordForm({
+export const ResetPasswordForm = ({
     title,
     bordered,
     passwordValidations,
     passwordMinChar,
-    completeMessage,
-    onSubmitForm,
-    onFinish
-}: ResetPasswordForm) {
+    onSubmitForm
+}: ResetPasswordForm) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [isValid, setIsValid] = useState(false);
-    const [isPasswordSaved, setIsPasswordSaved] = useState(false);
+    const [validations, setValidations] = useState<ResetPasswordValidations>({ password: undefined, confirmPassword: undefined });
 
     const HandleValidatePassword = (value: string) => {
         let errors:boolean[] = [];
@@ -53,43 +53,31 @@ export function ResetPasswordForm({
         }
 
         if(errors.filter( x => x === false).length > 0) {
-            setIsValid(false);
             return false;
         }
         
-        setIsValid(true);
         return true;
     };
 
+    const isEnable = (type: PasswordValidationsType) => passwordValidations ? passwordValidations.filter( x => x === type).length > 0 : false;
     const HandleValidateConfirmPassword = (value: string) => PasswordValidations.matchPassword(password, value);
 
     function HandleOnSubmitForm(e: any) {
         e.preventDefault();
+
+        setValidations({
+            confirmPassword: HandleValidateConfirmPassword(confirmPassword),
+            password: HandleValidatePassword(password)
+        });
         
-        if(!isValid) return;
+        if(
+            HandleValidatePassword(password) &&
+            HandleValidateConfirmPassword(confirmPassword)
+        ) {
+            return onSubmitForm({ password, confirmPassword });
+        }
 
-        return setIsPasswordSaved(onSubmitForm(password));
-    }
-
-    if(isPasswordSaved) {
-        return (
-            <form className={`form ${ bordered ? 'form-bordered' : '' }`}>
-                { title ? <h4 className="title"> { title }</h4> : '' }
-                <div className="operation-result">
-                    { status === "valid" ? (
-                        <div className="icon success">
-                            <i className="fa fa-check-circle"></i>
-                        </div>
-                    ) : (
-                        <div className="icon danger">
-                            <i className="fa fa-times-circle"></i>
-                        </div>
-                    ) }
-                    <span className="message">{ completeMessage }</span>
-                </div>
-                <Button label="Go to sign in" onClick={ onFinish }>Go to Sign In <i className="fa fa-arrow-right"></i></Button>
-            </form>
-        );
+        return false;
     }
 
     return (
@@ -103,13 +91,15 @@ export function ResetPasswordForm({
                 successMessage={ "Password is valid!" }
                 placeholder="Insert your password here"
                 onValidate={ HandleValidatePassword }
+                valid={ validations.password }
             />
             <CreatePasswordValidation
                 password={ password }
-                minimumChars={ passwordValidations[] }
-                hasNumber
-                hasUpperCase
-                hasSpecialChar
+                min={ passwordMinChar }
+                minimumChars={ isEnable( "minimumChars" ) }
+                hasNumber={ isEnable( "hasNumber" ) }
+                hasUpperCase={ isEnable( "hasUpperCase" ) }
+                hasSpecialChar={ isEnable( "hasSpecialChar" ) }
             />
             <Password 
                 value={confirmPassword} 
@@ -119,6 +109,7 @@ export function ResetPasswordForm({
                 errorMessage={ "Confirm password is invalid!" }
                 successMessage={ "Confirm password is valid!" }
                 onValidate={ HandleValidateConfirmPassword }
+                valid={ validations.confirmPassword }
             />
             <Button label="Save password" color="primary" onClick={HandleOnSubmitForm} />
         </form>

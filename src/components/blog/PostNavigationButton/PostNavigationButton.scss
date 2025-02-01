@@ -1,9 +1,11 @@
+@import '../../../scss/global.scss';
+
 .btn-post-navigation {
     width: 100%;
     padding: 16px 24px;
     border: none;
     border-radius: 8px;
-    background-color: $elements-secondary;
+    background-color: $secondary;
     display: flex;
     flex-direction: column;
     color: #fff;
@@ -34,7 +36,7 @@
     h6 {
         font-size: 14px;
         font-weight: 500;
-        font-family: $elements-font-secondary;
+        font-family: $font-family-monospace;
     }
 
     h6, span {
@@ -44,7 +46,7 @@
 
     i {
         position: absolute;
-        color: #000;
+        color: $black;
         top: 50%;
         transform: translateY(-50%);
         font-size: 24px;
@@ -52,7 +54,7 @@
     }
 
     &:hover {
-        background-color: $elements-secondary-hover;
+        background-color: shade-color($secondary, 15%);
     }
 }
 

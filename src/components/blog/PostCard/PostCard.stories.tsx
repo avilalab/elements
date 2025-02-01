@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PostCard } from './PostCard';
 
 const meta = {
-	title: 'Extra/Cards/PostCard',
+	title: 'Blog/Post Card',
 	component: PostCard,
 	parameters: {
 		layout: 'centered',

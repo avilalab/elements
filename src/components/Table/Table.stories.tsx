@@ -38,7 +38,7 @@ export const Default: Story = {
 		fields: [ 'id', 'name', 'email' ],
 		actions: () => (
 			<div className="d-flex" style={{ gap: 8 }}>
-				<button className="btn btn-third">View</button>
+				<button className="btn btn-light">View</button>
 				<button className="btn btn-primary">Edit</button>
 				<button className="btn btn-danger">Delete</button>
 			</div>

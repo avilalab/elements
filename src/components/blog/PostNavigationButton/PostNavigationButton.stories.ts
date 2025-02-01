@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PostNavigationButton, PostNavigationButtonProps } from './PostNavigationButton';
 
 const meta = {
-	title: 'Extra/Buttons/PostNavigationButton',
+	title: 'Blog/Post Navigation Button',
 	component: PostNavigationButton,
 	parameters: {
 		layout: 'centered',

@@ -1,0 +1,9 @@
+@import '../../../scss/global.scss';
+
+.invalid-feedback {
+    color: $danger;
+}
+
+.was-validated .form-control:invalid, .form-control.is-invalid {
+    border-color: $success;
+}

@@ -1,69 +1,70 @@
 /* ===================== Colors ======================= */
-$elements-gray: #95A5A5;
-$elements-gray-hover: #505858;
-$elements-red: #FE3152;
-$elements-red-hover: #BD233C;
-$elements-green: #27AE61;
-$elements-green-hover: #1C8549;
-$elements-blue: #297FBB;
-$elements-blue-hover: #1D5F8A;
-$elements-orange: #F39C11;
-$elements-orange-hover: #C17B0B;
-$elements-yellow: #FFD011;
-$elements-yellow-hover: #D6AE0C;
-$elements-gold: #FFC225;
-$elements-primary: #9A59B5;
-$elements-primary-hover: #693D7B;
-$elements-black: #282424;
-$elements-black-hover: #000;
-$elements-text-secondary: $elements-gray;
-$elements-text-white: #fff;
-$elements-text-black: #000;
-$elements-secondary: $elements-orange;
-$elements-secondary-hover: $elements-orange-hover;
-$elements-third: $elements-blue;
-$elements-third-hover: $elements-blue-hover;
-$elements-default: $elements-black;
-$elements-default-hover: $elements-black-hover;
-$elements-success: $elements-green;
-$elements-success-hover: $elements-green-hover;
-$elements-danger: $elements-red;
-$elements-danger-hover: $elements-red-hover;
-$elements-warning: $elements-yellow;
-$elements-warning-font-weight: 600;
-$elements-warning-hover: $elements-yellow-hover;
-$elements-info: $elements-blue;
-$elements-info-hover: $elements-blue-hover;
+
+$blue:                              #297FBB !default;
+$indigo:                            #6610f2 !default;
+$purple:                            #9A59B5 !default;
+$pink:                              #d63384 !default;
+$red:                               #e0304d !default;
+$orange:                            #F39C11 !default;
+$yellow:                            #FFD011 !default;
+$green:                             #27AE61 !default;
+$teal:                              #20c997 !default;
+$cyan:                              #0dcaf0 !default;
+$gold:                              #FFC225 !default;
+$gray:                              #95A5A5 !default;
+$black:                             #282424 !default;
+
+$white:                             #fff !default;
+$gray-100:                          #f8f9fa !default;
+$gray-200:                          #e9ecef !default;
+$gray-300:                          #dee2e6 !default;
+$gray-400:                          #ced4da !default;
+$gray-500:                          #adb5bd !default;
+$gray-600:                          #6c757d !default;
+$gray-700:                          #495057 !default;
+$gray-800:                          #343a40 !default;
+$gray-900:                          #212529 !default;
+
+$primary:                           $purple;
+$secondary:                         $orange;
+$third:                             $blue;
+$default:                           $black;
+$success:                           $green;
+$danger:                            $red;
+$warning:                           $yellow;
+$info:                              $blue;
 
 /* ======================= Border ======================== */
-$elements-border-radius: 8px;
-$elements-border-color: $elements-gray;
+$border-radius:                     8px;
+$border-color:                      $gray;
 
 /* ======================= Loader ======================== */
-$elements-loader-size: 48px;
-$elements-loader-thick: 5px;
-$elements-loader-color-out: $elements-gray-hover;
-$elements-loader-color-in: $elements-gray;
+$loader-size:                       48px;
+$loader-thick:                      5px;
+$loader-color-in:                   $gray;
+$loader-color-out:                  $gray-900;
 
 /* ======================= Button ======================== */
-$elements-btn-nav-bg-color: none;
-$elements-btn-nav-bg-color-hover: none;
-$elements-btn-nav-color: $elements-black;
-$elements-btn-nav-color-hover: $elements-black-hover;
-$elements-btn-nav-border-color: none;
-$elements-btn-nav-border-color-hover: none;
-$elements-btn-nav-font-weight: 600;
-$elements-btn-nav-a-decoration: underline;
+$btn-nav-bg-color:                  none;
+$btn-nav-bg-color-hover:            none;
+$btn-nav-color:                     $black;
+$btn-nav-border-color:              none;
+$btn-nav-border-color-hover:        none;
+$btn-nav-font-weight:               600;
+$btn-nav-a-decoration:              underline;
 
 /* ======================= Card ======================== */
-$elements-card-padding-x: 16px;
-$elements-card-padding-y: 16px;
+$card-padding-x:                    16px;
+$card-padding-y:                    16px;
 
 /* ======================= Font ======================== */
-$elements-font-primary: "Urbanist", sans-serif;
-$elements-font-secondary: "DM Sans", sans-serif;
+$font-family-sans-serif:            "DM Sans", sans-serif !default;
+$font-family-monospace:             "Urbanist", monospace !default;
 
 /* ======================= Form ======================== */
-$elements-form-border-width: 1px;
-$elements-form-border-color: #ccc;
-$elements-form-border-radius: $elements-border-radius;
+$form-border-width:                 1px;
+$form-border-color:                 #ccc;
+$form-border-radius:                $border-radius;
+
+$form-invalid-color:                $danger;
+$form-invalid-border-color:         $danger;

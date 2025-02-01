@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Button } from "../../button/Button";
+import { Button } from "../../Button/Button";
 
 import './ForgotPasswordForm.scss';
-import { Email } from "../../inputs/Email/Email";
+import { Email } from "../../Inputs/Email/Email";
 
 export const ForgotPasswordForm = ({
     title,

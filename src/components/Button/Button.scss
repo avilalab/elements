@@ -1,0 +1,19 @@
+@import '../../scss/global.scss';
+
+.btn {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+
+    i {
+        margin-left: 8px;
+    }
+
+    .loader {
+        width: 24px;
+        height: 24px;
+        border-width: 3px;
+    }
+}

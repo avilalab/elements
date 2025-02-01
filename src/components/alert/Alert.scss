@@ -1,3 +1,5 @@
+@import '../../scss/global.scss';
+
 .alert {
     font-family: "DM Sans";
     font-size: 14px;
@@ -13,34 +15,34 @@
 
 .alert {
     &-danger {
-        background-color: rgba($color: $elements-danger, $alpha: 0.15);
+        background-color: rgba($color: $danger, $alpha: 0.15);
 
         i {
-            color: $elements-danger;
+            color: $danger;
         }
     }
 
     &-warning {
-        background-color: rgba($color: $elements-warning, $alpha: 0.15);
+        background-color: rgba($color: $warning, $alpha: 0.15);
 
         i {
-            color: $elements-warning;
+            color: $warning;
         }
     }
 
     &-success {
-        background-color: rgba($color: $elements-success, $alpha: 0.15);
+        background-color: rgba($color: $success, $alpha: 0.15);
 
         i {
-            color: $elements-success;
+            color: $success;
         }
     }
 
     &-info {
-        background-color: rgba($color: $elements-info, $alpha: 0.15);
+        background-color: rgba($color: $info, $alpha: 0.15);
 
         i {
-            color: $elements-info;
+            color: $info;
         }
     }
 }

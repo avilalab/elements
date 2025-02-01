@@ -1,12 +1,16 @@
 import { useState } from "react";
-import { Button } from "../../button/Button";
-import { Text } from "../../inputs/Text/Text";
+import { Button } from "../../Button/Button";
+import { Text } from "../../Inputs/Text/Text";
 import { Validatable } from "../../../types/types";
 
 export interface ResetCodeForm extends Validatable<{ code: string }> {
     title?: string;
     bordered?: boolean;
     onSubmitForm: (code: string) => boolean;
+}
+
+export interface ResetCodeValidation {
+    code: boolean | undefined;
 }
 
 export function ResetCodeForm({
@@ -17,21 +21,36 @@ export function ResetCodeForm({
     errorMessage,
     onValidate
 }: ResetCodeForm) {
+    const [isLoading, setIsLoading] = useState(false);
     const [code, setCode] = useState<string>('');
-    const [isValid, setIsValid] = useState<boolean | undefined>(undefined);
+    const [validations, setValidations] = useState<ResetCodeValidation>({ code: undefined });
+
+    const HandleValidateCode = (value: string) : boolean => {
+        if(onValidate) {
+            let result = onValidate({ code: value });
+
+            return result === undefined ? false : result;
+        }
+
+        return value.length > 0;
+    };
 
     function HandleOnSubmitForm(e: any) {
         e.preventDefault();
-        let tmp_isCodeValid: boolean | undefined = false;
+
+        setValidations({
+            code: HandleValidateCode( code )
+        });
         
-        if(onValidate && onSubmitForm) {
-            tmp_isCodeValid = onValidate({ code });
-            setIsValid(tmp_isCodeValid);
+        setIsLoading(true);
 
-            if(tmp_isCodeValid) return onSubmitForm(code);
+        if(HandleValidateCode( code )) {
+            return onSubmitForm(code);
         }
-
-        return onSubmitForm(code);
+        
+        setIsLoading(false);
+        
+        return false;
     }
 
     return (
@@ -44,12 +63,25 @@ export function ResetCodeForm({
                 placeholder="Insert the reset code here"
                 errorMessage={ errorMessage }
                 successMessage={ successMessage }
-                onValidate={() => isValid }
+                onValidate={ (value) => onValidate ? onValidate({ code: value }) : undefined }
+                valid={ validations.code }
+                disabled={ isLoading }
+                mask={ (value) => {
+                    value = value.toUpperCase();
+                    value = value.replace(/[^A-Z0-9]/g, "");
+
+                    if (value.length > 4) {
+                        value = value.slice(0, 4) + "-" + value.slice(4, 8);
+                    }
+
+                    return value;
+                }}
             />
-            <Button 
+            <Button
+                isLoading={ isLoading }
                 label="Send reset link"
                 color="primary"
-                onClick={HandleOnSubmitForm}
+                onClick={ HandleOnSubmitForm }
             >Reset password <i className="fa fa-arrow-right"></i></Button>
         </form>
     );

@@ -1,3 +1,5 @@
+@import '../../../scss/global.scss';
+
 .post-dificulty {
     display: flex;
     align-items: center;
@@ -16,15 +18,15 @@
 
         .fa-award {
             font-size: 22px;
-            color: $elements-primary;
+            color: $primary;
         }
 
         .fa-star {
-            color: $elements-gold;
+            color: $gold;
         }
 
         .fa-regular.fa-star {
-            color: $elements-gray;
+            color: $gray;
         }
     }
 }

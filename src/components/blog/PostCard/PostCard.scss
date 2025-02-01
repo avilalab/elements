@@ -1,3 +1,5 @@
+@import '../../../scss/global.scss';
+
 .post-card {
     position: relative;
     .card-header, .card-footer {
@@ -5,7 +7,7 @@
         justify-content: space-between;
         align-items: center;
 
-        padding: $elements-card-padding-y $elements-card-padding-x;
+        padding: $card-padding-y $card-padding-x;
         background: transparent;
         border-color: transparent;
     
@@ -18,19 +20,19 @@
     .card-title {
         font-size: 22px;
         font-weight: 800;
-        font-family: $elements-font-secondary;
+        font-family: $font-family-monospace;
     }
     
     .card-subtitle {
         margin-top: 24px;
         font-size: 18px;
         font-weight: 300;
-        color: $elements-text-secondary;
-        font-family: $elements-font-secondary;
+        
+        font-family: $font-family-monospace;
     }
 
     .post-card-author {
-        font-family: $elements-font-secondary;
+        font-family: $font-family-monospace;
         font-size: 16px;
         font-weight: 800;
     }
@@ -73,6 +75,6 @@
     }
 
     .fa-clock {
-        color: $elements-primary;
+        color: $primary;
     }
 }
