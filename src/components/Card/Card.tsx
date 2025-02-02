@@ -7,8 +7,6 @@ interface Card {
     subtitle?: string | { html?: string; };
     text?: string;
     textCenter?: boolean;
-    width?: number;
-    height?: number;
     id?: string;
     className?: string;
     links?: { label: string; href: string; }[];
@@ -28,15 +26,13 @@ export function Card({
     text,
     links,
     textCenter,
-    width,
-    height,
     id,
     className,
     bordered = true,
     onClick
 }: Card) {
     return (
-        <div id={ id } className={`card ${className}${ textCenter ? ' text-center' : '' }${ !bordered ? ' card-no-border' : '' }`} style={{ width, height }}>
+        <div id={ id } className={`card ${className}${ textCenter ? ' text-center' : '' }${ !bordered ? ' card-no-border' : '' }`}>
             { cardHeader ? <div onClick={onClick} className="card-header">{ cardHeader }</div> : ( <></> ) }
             <div onClick={onClick} className="card-body">
                     { title ? <h5 className="card-title">{ title }</h5> : '' }
