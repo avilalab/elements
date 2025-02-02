@@ -1,3 +1,5 @@
+@import '../../../scss/global.scss';
+
 header {
     width: 100%;
     display: flex;
@@ -14,8 +16,8 @@ header[data-stuck] {
         top: 0;
         margin-top: 0px;
         border: none;
-        border-bottom: 1px solid var(--border-primary);
-        background-color: var(--background-secondary);
+        border-bottom: 1px solid $primary;
+        background-color: tint-color($primary, 80%);
         max-width: 100%;
         border-radius: 0;
         
@@ -31,9 +33,9 @@ header[data-stuck] {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--background-secondary);
+    background-color: tint-color($primary, 80%);
     border-radius: 64px;
-    border: 1px solid var(--border-primary);
+    border: 1px solid $primary;
     transition: all .3s ease;
 }
 
@@ -48,7 +50,7 @@ header[data-stuck] {
     align-items: center;
 
     .logo-title {
-        font-family: var(--font-family-secundary);
+        font-family: $font-family-sans-serif;
         font-weight: 600;
     }
 
