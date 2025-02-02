@@ -53,23 +53,25 @@ export function SignUpForm({
     const isEnable = (type: PasswordValidationsType) => passwordValidations ? passwordValidations.filter( x => x === type).length > 0 : false;
     const HandleValidatePassword = (value: string) => {
         let errors:boolean[] = [];
-        if(passwordValidations) {
+        if(passwordValidations && passwordValidations.length > 0) {
             passwordValidations.map( validation => {
                 switch(validation) {
                     case 'minimumChars':
-                        errors.push(PasswordValidations[validation](password, passwordMinChar));
+                        errors.push(PasswordValidations[validation](value, passwordMinChar));
                         break;
 
                     case 'matchPassword':
-                        errors.push(PasswordValidations[validation](password, confirmPassword));
+                        errors.push(PasswordValidations[validation](value, confirmPassword));
                         break;
                     
                     default:
-                        errors.push(PasswordValidations[validation](password));
+                        errors.push(PasswordValidations[validation](value));
                         break;
                 }
 
             });
+        } else {
+            errors.push(value.length === 0 ? false : true);
         }
 
         if(errors.filter( x => x === false).length > 0) {
