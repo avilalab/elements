@@ -13,7 +13,6 @@ export function PostSection({
     return (
         <Card
             className="post-section-widget"
-            width={380}
             bordered={ false }
         >
             <ul className="nav">

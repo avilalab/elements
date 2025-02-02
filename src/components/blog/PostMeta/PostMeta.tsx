@@ -20,7 +20,7 @@ export function PostMeta({
     postReadingTime
 }: PostMetaProps) {
     return (
-        <Card className="post-meta-widget" width={280}>
+        <Card className="post-meta-widget">
             <ul className="list-group list-group-flush">
                 <li className="list-group-item post-meta-categories">
                     <i className="fa fa-tag"></i>

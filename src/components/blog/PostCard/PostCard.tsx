@@ -33,7 +33,6 @@ export function PostCard({
     return (
         <Card
             className="post-card"
-            width={ 380 }
             cardHeader={(
                 <>
                     <span onClick={onClickCategoryPost} className="post-card-category">
