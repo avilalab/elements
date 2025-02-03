@@ -3,17 +3,21 @@ import './PostSection.scss';
 
 export interface PostSectionProps {
     active?: number;
+    bordered?: boolean;
+    title?: string;
     topics?: { title: string; anchor: string; }[];
 }
 
 export function PostSection({
+    active = 0,
+    bordered,
+    title,
     topics,
-    active = 0
 }: PostSectionProps) {
     return (
         <Card
             className="post-section-widget"
-            bordered={ false }
+            bordered={ bordered }
         >
             <ul className="nav">
                 { topics ? topics.map( (topic, index) => (
