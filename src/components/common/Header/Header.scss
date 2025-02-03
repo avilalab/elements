@@ -6,7 +6,6 @@ header {
     align-items: center;
     justify-content: center;
     height: 125px;
-    padding-top: 30px;
 }
 
 header[data-stuck] {    
@@ -20,16 +19,11 @@ header[data-stuck] {
         background-color: tint-color($primary, 80%);
         max-width: 100%;
         border-radius: 0;
-        
-        .header-container {
-            padding: 16px 0px;
-        }
     }
 }
 
 .header-wrapper {
     width: 100%;
-    max-width: 1190px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,33 +35,19 @@ header[data-stuck] {
 
 .header-container {
     width: 100%;
-    max-width: 1190px;
     padding: 16px 32px;
-    
     transition: all .3s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .logo-title {
-        font-family: $font-family-sans-serif;
-        font-weight: 600;
-    }
-
-    button {
-        i {
-            font-size: 22px;
-        }
+    h2 {
+        margin-bottom: 0;
     }
 }
 
-@media only screen and (min-width: 360px) and (max-width: 430px) {
-    header {
-        padding: 24px 0px;
-    }
-    
+@media only screen and (min-width: 360px) and (max-width: 430px) {    
     .header-wrapper {
-        width: 95%;
         flex-direction: row;
         align-items: center;
     }
