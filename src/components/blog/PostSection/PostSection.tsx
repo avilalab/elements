@@ -17,7 +17,7 @@ export function PostSection({
         >
             <ul className="nav">
                 { topics ? topics.map( (topic, index) => (
-                    <li className={`${ active === index ? 'active' : '' }`}><a href={ topic.anchor }>{ topic.title }</a></li>
+                    <li key={ topic.anchor } className={`${ active === index ? 'active' : '' }`}><a href={ `#${topic.anchor}` }>{ topic.title }</a></li>
                 ) ) : '' }
             </ul>
         </Card>
