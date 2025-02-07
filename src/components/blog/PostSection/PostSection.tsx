@@ -75,20 +75,19 @@ export function PostSection({
         });
     } 
     return (
-        <Card
-            className="post-section-widget"
-            bordered={bordered}
-        >
-            <h4><i className="fa-solid fa-bolt"></i>Table of Contents</h4>
-            <ul>
-                { anchors.map((topic, index) => (
-                    <li 
-                        key={topic.link}
-                        className={`${active === index ? 'active' : ''}`}
-                        onClick={() => HandleChangeAnchor(topic) }
-                    ><a href={`#${topic.link}`}>{topic.title}</a></li>
-                ))}
-            </ul>
-        </Card>
+        <div className="table-of-contents">
+            <h4 className="table-of-contents-title"><i className="fa-solid fa-bolt"></i>Table of Contents</h4>
+            <div className="table-of-contents-container">
+                <ul>
+                    { anchors.map( ancora => (
+                        <li 
+                            key={ancora.title}
+                            className={`${ current === ancora.title ? 'ativo' : '' }`}
+                            onClick={e => HandleChangeAnchor(ancora)}
+                        ><a href={ ancora.link }>{ ancora.title }</a></li>
+                    )) }
+                </ul>
+            </div>
+        </div>
     );
 }
