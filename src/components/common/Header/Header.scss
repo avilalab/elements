@@ -1,11 +1,20 @@
 @import '../../../scss/global.scss';
 
+html[data-bs-theme="dark"] .header-wrapper {
+    background-color: #101010;
+}
+
 header {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 125px;
+    padding-top: 30px;
+
+    h1, h2, h3, h4, h5 ,h6 {
+        margin-bottom: 0;
+    }
 }
 
 header[data-stuck] {    
@@ -16,39 +25,55 @@ header[data-stuck] {
         margin-top: 0px;
         border: none;
         border-bottom: 1px solid $primary;
-        max-width: 100%;    
+        max-width: 100%;
         border-radius: 0;
+        
+        .header-container {
+            padding: 16px 0px;
+        }
     }
-}
-
-html[data-bs-theme="dark"] .header-wrapper {
-    background-color: #101010;
 }
 
 .header-wrapper {
     width: 100%;
+    max-width: 1190px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $gray-100;
     border-radius: 64px;
+    background-color: #f8f9fa;
     border: 1px solid $primary;
+    transition: all .3s ease;
 }
 
 .header-container {
     width: 100%;
+    max-width: 1190px;
     padding: 16px 32px;
+    
+    transition: all .3s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    h2 {
-        margin-bottom: 0;
+    .logo-title {
+        font-weight: 600;
+    }
+
+    button {
+        i {
+            font-size: 22px;
+        }
     }
 }
 
-@media only screen and (min-width: 360px) and (max-width: 430px) {    
+@media only screen and (min-width: 360px) and (max-width: 430px) {
+    header {
+        padding: 24px 0px;
+    }
+    
     .header-wrapper {
+        width: 95%;
         flex-direction: row;
         align-items: center;
     }
