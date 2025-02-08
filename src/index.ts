@@ -21,13 +21,6 @@ export * from './components/Loading/Loading';
 
 export * from './components/Table/Table';
 
-export * from './components/blog/PostCard/PostCard';
-export * from './components/blog/PostContent/PostContent';
-export * from './components/blog/PostDificulty/PostDificulty';
-export * from './components/blog/PostMeta/PostMeta';
-export * from './components/blog/PostNavigationButton/PostNavigationButton';
-export * from './components/blog/PostSection/PostSection';
-
 export * from './components/common/Footer/Footer';
 export * from './components/common/Header/Header';
 
