@@ -25,6 +25,9 @@ export * from './components/modal/useModal';
 
 export * from './components/Table/Table';
 
+export * from './contexts/ThemeContext';
+export * from './hooks/useAppTheme';
+
 export * from './components/common/Footer/Footer';
 export * from './components/common/Header/Header';
 
