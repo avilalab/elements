@@ -1,5 +1,6 @@
-import { ReactNode, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import './Header.scss';
+import { useAppTheme } from "../../../hooks/useAppTheme";
 
 
 export interface HeaderProps {
@@ -7,7 +8,20 @@ export interface HeaderProps {
 }
 
 export function Header({ children }: HeaderProps) {
+    const { scroll } = useAppTheme();
     const header = useRef<HTMLHeadingElement>(null);
+
+    useEffect(() => {
+        switch (scroll) {
+            case 'initial':
+                if (header.current) header.current.removeAttribute('data-stuck');
+                break;
+
+            case 'scrolling':
+                if (header.current) header.current.setAttribute('data-stuck', '');
+                break;
+        }
+    }, [scroll]);
 
     return (
         <header ref={header} className="header">

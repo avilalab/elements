@@ -19,6 +19,10 @@ export * from './components/Inputs/TextArea/TextArea';
 
 export * from './components/Loading/Loading';
 
+export * from './components/modal/Modal';
+export * from './components/modal/ModalContext';
+export * from './components/modal/useModal';
+
 export * from './components/Table/Table';
 
 export * from './components/common/Footer/Footer';

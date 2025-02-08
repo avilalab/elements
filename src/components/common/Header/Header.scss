@@ -16,10 +16,13 @@ header[data-stuck] {
         margin-top: 0px;
         border: none;
         border-bottom: 1px solid $primary;
-        background-color: tint-color($primary, 80%);
-        max-width: 100%;
+        max-width: 100%;    
         border-radius: 0;
     }
+}
+
+html[data-bs-theme="dark"] .header-wrapper {
+    background-color: #101010;
 }
 
 .header-wrapper {
@@ -27,10 +30,10 @@ header[data-stuck] {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: tint-color($primary, 80%);
+    background-color: $gray-100;
     border-radius: 64px;
     border: 1px solid $primary;
-    transition: all .3s ease;
+    transition: .3s ease-in-out;
 }
 
 .header-container {
