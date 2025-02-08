@@ -33,13 +33,11 @@ html[data-bs-theme="dark"] .header-wrapper {
     background-color: $gray-100;
     border-radius: 64px;
     border: 1px solid $primary;
-    transition: .3s ease-in-out;
 }
 
 .header-container {
     width: 100%;
     padding: 16px 32px;
-    transition: all .3s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
