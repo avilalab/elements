@@ -26,7 +26,7 @@ export function Header({ children }: HeaderProps) {
     return (
         <header ref={header} className="header">
             <div className="header-wrapper">
-                <div className="header-container">
+                <div className="container">
                     { children }
                 </div>
             </div>

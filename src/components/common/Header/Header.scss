@@ -28,7 +28,7 @@ header[data-stuck] {
         max-width: 100%;
         border-radius: 0;
         
-        .header-container {
+        .container {
             padding: 16px 0px;
         }
     }
@@ -44,28 +44,27 @@ header[data-stuck] {
     background-color: #f8f9fa;
     border: 1px solid $primary;
     transition: all .3s ease;
-}
-
-.header-container {
-    width: 100%;
-    max-width: 1190px;
-    padding: 16px 32px;
     
-    transition: all .3s ease;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .logo-title {
-        font-weight: 600;
-    }
-
-    button {
-        i {
-            font-size: 22px;
+    .container {
+        padding: 16px 32px;
+        
+        transition: all .3s ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        .logo-title {
+            font-weight: 600;
+        }
+    
+        button {
+            i {
+                font-size: 22px;
+            }
         }
     }
 }
+
 
 @media only screen and (min-width: 360px) and (max-width: 430px) {
     header {
