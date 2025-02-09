@@ -35,7 +35,6 @@ export function ThemeContextProvider({ children }: ThemeContextProps) {
     }
 
     const setScroll = (e: any) => {
-        console.log(window.scrollY);
         if(window.scrollY > 50) {
             setScrollState('scrolling');
             return;
