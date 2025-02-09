@@ -11,6 +11,7 @@ header {
     justify-content: center;
     height: 125px;
     padding-top: 30px;
+    padding-bottom: 30px;
 
     h1, h2, h3, h4, h5 ,h6 {
         margin-bottom: 0;
@@ -27,16 +28,19 @@ header[data-stuck] {
         border-bottom: 1px solid $primary;
         max-width: 100%;
         border-radius: 0;
-        
+    }
+}
+
+header:not([data-stuck]) {
+    .header-wrapper {
         .container {
-            padding: 16px 0px;
+            padding: 16px 32px;
         }
     }
 }
 
 .header-wrapper {
     width: 100%;
-    max-width: 1190px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,8 +50,8 @@ header[data-stuck] {
     transition: all .3s ease;
     
     .container {
-        padding: 16px 32px;
-        
+        padding-top: 16px;
+        padding-bottom: 16px;        
         transition: all .3s ease;
         display: flex;
         justify-content: space-between;
