@@ -4,8 +4,6 @@ import { Password } from "../../Inputs/Password/Password";
 import { Text } from "../../Inputs/Text/Text";
 import { Button } from "../../Button/Button";
 
-import './LoginForm.scss';
-
 export interface LoginForm {
     title?: string;
     bordered?: boolean;

@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Validatable, ValueState } from '../../../types/types';
 
-import './Checkbox.scss';
-
 export interface CheckboxInput extends Validatable<boolean>, ValueState<boolean> {
     label?: string;
     placeholder?: string;

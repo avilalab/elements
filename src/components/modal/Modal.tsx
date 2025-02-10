@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import useModal from "./useModal";
-
-import './Modal.scss';
+import { useModal } from "./useModal";
 
 export function Modal() {
     const { animationType, isModalOpen, modalContent, HandleCloseModal, animationState } = useModal();

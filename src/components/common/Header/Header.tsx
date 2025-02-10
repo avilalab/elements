@@ -1,7 +1,5 @@
 import { ReactNode, useEffect, useRef } from "react";
-import './Header.scss';
 import { useAppTheme } from "../../../hooks/useAppTheme";
-
 
 export interface HeaderProps {
     children: ReactNode;

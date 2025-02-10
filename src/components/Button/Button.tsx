@@ -1,8 +1,6 @@
 import { ReactNode } from "react";
 import { Loading } from "../Loading/Loading";
 
-import './Button.scss';
-
 export type ButtonColorType = 'primary' | 'secondary' | 'third' | 'default' | 'success' | 'danger' | 'warning' | 'nav';
 
 export interface ButtonProps {

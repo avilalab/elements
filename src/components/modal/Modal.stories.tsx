@@ -2,7 +2,7 @@ import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { Modal } from "./Modal";
 import { ModalContextProvider } from "./ModalContext";
 import { Button } from "../Button/Button";
-import useModal from "./useModal";
+import { useModal } from "./useModal";
 import { LoginForm } from "../Auth/LoginForm/LoginForm";
 
 export default {

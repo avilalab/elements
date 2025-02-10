@@ -1,4 +1,4 @@
-@import '../../scss/global.scss';
+@use '../variables' as *;
 
 .table {
     thead tr th:hover {

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Validatable, ValueState } from '../../../types/types';
-import './Email.scss';
 
 export interface EmailInput extends Validatable<string>, ValueState<string> {
     label?: string;

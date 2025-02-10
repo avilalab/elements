@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Validatable, ValueState } from '../../../types/types';
-import './Password.scss';
 
 export interface PasswordInput extends Validatable<string>, ValueState<string> {
     label?: string;

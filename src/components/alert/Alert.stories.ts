@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Alert, IAlertType } from './Alert';
+import { Alert, AlertType } from './Alert';
 
 const meta = {
 	title: 'Components/Alerts',
@@ -21,7 +21,7 @@ export const Default: Story = {
 	},
 	argTypes: {
 		type: {
-			options: [ 'danger', 'info', 'success', 'warning' ] as IAlertType[] as string[],
+			options: [ 'danger', 'info', 'success', 'warning' ] as AlertType[] as string[],
 			control: {
 				type: 'select'
 			}

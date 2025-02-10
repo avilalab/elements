@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './Table.scss';
 
 export interface TableProps<T extends Object> {
     fields: (keyof T)[];

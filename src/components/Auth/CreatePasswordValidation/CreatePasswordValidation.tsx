@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { PasswordValidations } from '../../../validations/PasswordValidation';
 
-import './CreatePasswordValidation.scss';
-
 interface CreatePasswordValidation {
     password: string;
     minimumChars?: boolean;

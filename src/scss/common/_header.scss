@@ -1,4 +1,4 @@
-@import '../../../scss/global.scss';
+@use '../variables' as *;
 
 html[data-bs-theme="dark"] .header-wrapper {
     background-color: #101010;

@@ -13,7 +13,7 @@ export interface ModalContextData {
 
 export type ModalAnimacaoType = "fade" | "move";
 
-interface ModalContextProviderProps {
+export interface ModalContextProviderProps {
     children: ReactNode;
 }
 

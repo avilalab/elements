@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Maskable, Validatable, ValueState } from "../../../types/types";
 
-import "./Text.scss";
-
 export interface TextInput
     extends Validatable<string>,
         ValueState<string>,

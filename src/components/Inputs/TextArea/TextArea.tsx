@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ValueState, Validatable, Maskable } from '../../../types/types';
 
-import './TextArea.scss';
-
 export interface TextAreaInput extends Validatable<string>, ValueState<string>, Maskable<string> {
     label?: string;
     placeholder?: string;

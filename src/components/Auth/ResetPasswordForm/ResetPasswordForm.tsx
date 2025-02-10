@@ -4,8 +4,6 @@ import { Password } from "../../Inputs/Password/Password";
 import { Button } from "../../Button/Button";
 import { PasswordValidations, PasswordValidationsType } from "../../../validations/PasswordValidation";
 
-import './ResetPasswordForm.scss';
-
 export interface ResetPasswordValidations {
     password: boolean | undefined;
     confirmPassword: boolean | undefined;

@@ -5,8 +5,6 @@ import { Password } from "../../Inputs/Password/Password";
 import { Text } from "../../Inputs/Text/Text";
 import { Button } from "../../Button/Button";
 import { PasswordValidations, PasswordValidationsType } from "../../../validations/PasswordValidation";
-
-import './SignUpForm.scss';
 import { Email } from "../../Inputs/Email/Email";
 
 export interface SignUpForm {

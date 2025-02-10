@@ -1,7 +1,5 @@
 import { ReactNode } from "react";
 
-import './Card.scss';
-
 interface Card {
     title?: string;
     subtitle?: string | { html?: string; };

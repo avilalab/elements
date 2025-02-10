@@ -1,13 +1,11 @@
-import "./Alert.scss";
+export type AlertType = "danger" | "success" | "warning" | "info";
 
-export type IAlertType = "danger" | "success" | "warning" | "info";
-
-export interface IAlertProps {
-    type: IAlertType;
+export interface AlertProps {
+    type: AlertType;
     mesage: string;
 }
 
-const states: { [key: string]: { state: IAlertType; element: JSX.Element } } = {
+const states: { [key: string]: { state: AlertType; element: JSX.Element } } = {
     danger: {
         state: "danger",
         element: <i className="fa fa-times"></i>,
@@ -26,7 +24,7 @@ const states: { [key: string]: { state: IAlertType; element: JSX.Element } } = {
     },
 };
 
-export const Alert = ({ type, mesage }: IAlertProps) => {
+export const Alert = ({ type, mesage }: AlertProps) => {
     return (
         <div className={`alert alert-${states[type].state}`}>
             { states[type].element } { mesage }
