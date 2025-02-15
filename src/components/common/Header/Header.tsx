@@ -3,9 +3,10 @@ import { useAppTheme } from "../../../hooks/useAppTheme";
 
 export interface HeaderProps {
     children: ReactNode;
+    className?: string;
 }
 
-export function Header({ children }: HeaderProps) {
+export function Header({ children, className }: HeaderProps) {
     const { scroll } = useAppTheme();
     const header = useRef<HTMLHeadingElement>(null);
 
@@ -22,7 +23,7 @@ export function Header({ children }: HeaderProps) {
     }, [scroll]);
 
     return (
-        <header ref={header} className="header">
+        <header ref={header} className={`header ${className}`}>
             <div className="header-wrapper">
                 <div className="container">
                     { children }
