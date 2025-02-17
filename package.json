@@ -1,9 +1,9 @@
 {
-  "name": "avilalab-elements",
-  "version": "0.12.3",
-  "main": "dist/avilalab-elements.umd.js",
-  "module": "dist/avilalab-elements.es.js",
-  "types": "dist/index.d.ts",
+  "name": "@avilalab/elements",
+  "version": "0.13.1",
+  "main": "./dist/@avilalab-elements.umd.js",
+  "module": "./dist/@avilalab-elements.es.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "src/**/*.scss"

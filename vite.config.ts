@@ -8,8 +8,8 @@ export default defineConfig({
     build: {
         lib: {
             entry: path.resolve(__dirname, "src/index.ts"),
-            name: "avilalab-elements",
-            fileName: (format) => `avilalab-elements.${format}.js`,
+            name: "@avilalab-elements",
+            fileName: (format) => `@avilalab-elements.${format}.js`,
         },
         rollupOptions: {
             external: ["react", "react-dom", "bootstrap"],
