@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../Button/Button";
 import { Text } from "../../Inputs/Text/Text";
-import { Validatable } from "../../../types/types";
+import { Validatable } from "../../../types/InputTypes";
 
 export interface ResetCodeForm extends Validatable<{ code: string }> {
     title?: string;

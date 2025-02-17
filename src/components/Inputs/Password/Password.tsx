@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Validatable, ValueState } from '../../../types/types';
+import { Validatable, ValueState } from '../../../types/InputTypes';
 
 export interface PasswordInput extends Validatable<string>, ValueState<string> {
     label?: string;

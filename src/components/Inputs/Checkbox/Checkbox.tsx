@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Validatable, ValueState } from '../../../types/types';
+import { Validatable, ValueState } from '../../../types/InputTypes';
 
 export interface CheckboxInput extends Validatable<boolean>, ValueState<boolean> {
     label?: string;

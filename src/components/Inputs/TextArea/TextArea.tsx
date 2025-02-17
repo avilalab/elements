@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ValueState, Validatable, Maskable } from '../../../types/types';
+import { ValueState, Validatable, Maskable } from '../../../types/InputTypes';
 
 export interface TextAreaInput extends Validatable<string>, ValueState<string>, Maskable<string> {
     label?: string;

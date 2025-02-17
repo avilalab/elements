@@ -33,3 +33,6 @@ export * from './components/common/Header/Header';
 
 export * from './helpers/DateHelper';
 export * from './validations/PasswordValidation';
+
+// Input Types
+export * from './types/InputTypes';
