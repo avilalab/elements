@@ -10,6 +10,7 @@ export interface ButtonProps {
     children?: ReactNode;
     isLoading?: boolean;
     disabled?: boolean;
+    className?: string;
 }
 
 export const Button = ({
@@ -19,10 +20,11 @@ export const Button = ({
     children,
     isLoading,
     disabled = false,
+    className
 }: ButtonProps) => {
     return (
         <button
-            className={`btn ${color ? "btn-" + color.toString() : ""}`}
+            className={`btn ${color ? "btn-" + color.toString() : ""} ${className}`}
             onClick={onClick}
             disabled={isLoading ?? disabled}
         >
