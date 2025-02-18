@@ -1,6 +1,6 @@
 {
   "name": "@avilalab/elements",
-  "version": "0.13.5",
+  "version": "0.13.6",
   "main": "./dist/@avilalab-elements.umd.js",
   "module": "./dist/@avilalab-elements.es.js",
   "types": "./dist/index.d.ts",
