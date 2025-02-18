@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Validatable, ValueState } from '../../../types/InputTypes';
 
-export interface CheckboxInput extends Validatable<boolean>, ValueState<boolean> {
+export interface CheckboxInput extends Validatable<boolean>, Omit<ValueState<boolean>, 'value'> {
+    value?: boolean;
     label?: string;
     placeholder?: string;
     id?: string;
@@ -11,7 +12,6 @@ export interface CheckboxInput extends Validatable<boolean>, ValueState<boolean>
 
 export function Checkbox({
     setValue,
-    value,
     onValidate,
     label,
     errorMessage,
@@ -19,9 +19,11 @@ export function Checkbox({
     id,
     name,
     valid,
-    disabled
+    disabled,
+    value
 }: CheckboxInput) {
     const [isValid, setIsValid] = useState<boolean | undefined>(valid);
+    const [isChecked, setIsChecked] = useState(value ?? false);
 
     useEffect(() => setIsValid(valid), [valid]);
 
@@ -30,8 +32,15 @@ export function Checkbox({
             setIsValid(onValidate( value ));
         }
 
+        setIsChecked(value);
         return setValue(value);
     }
+
+    useEffect(() => {
+        if(value) {
+            setIsChecked(value);
+        }
+    }, [value]);
 
     return (
         <div className="form-check">
@@ -41,7 +50,7 @@ export function Checkbox({
                 className={`form-check-input ${ isValid !== undefined ? isValid ? 'is-valid' : 'is-invalid' : '' }`} 
                 name={name} 
                 id={ id } 
-                checked={ value }
+                checked={ isChecked }
                 disabled={ disabled }
             />
             { label ? <label className="form-check-label" htmlFor={ id }>{ label }</label> : '' }
